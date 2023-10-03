@@ -22,7 +22,7 @@ const userScheema = new mongoose.Schema({
     name: {
         type: String,
     },
-    subscriber: {
+    subscribers: {
         type: Number,
         default: 0
     },
