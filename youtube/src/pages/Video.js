@@ -192,7 +192,7 @@ const Video = () => {
             <Image src={currentVideo?.imgUrl} />
             <ChannelDetail>
               <ChannelName>{chanel.name}</ChannelName>
-              <ChannelCounter>{chanel.subscriber} subscribers</ChannelCounter>
+              <ChannelCounter>{chanel.subscribers} subscribers</ChannelCounter>
               <Description>
                 {commentShow ? currentVideo?.desc : currentVideo?.desc.slice(0, 50)}
 
