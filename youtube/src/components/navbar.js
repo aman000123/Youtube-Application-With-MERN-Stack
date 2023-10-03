@@ -6,11 +6,11 @@ import VideoCallOutlinedIcon from "@mui/icons-material/VideoCallOutlined";
 import { Link, useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { useState } from "react";
-import ListIcon from '@mui/icons-material/List';
 import Upload from "./Upload";
 import AmanTube from "../img/yt-logo.jpg"
 import Menu from "./menu";
 import CloseIcon from '@mui/icons-material/Close';
+import ExploreIcon from '@mui/icons-material/Explore';
 
 const Navbar = () => {
 
@@ -56,7 +56,7 @@ const Navbar = () => {
                 {isListIconClicked ? (
                   <CloseIcon />
                 ) : (
-                  <ListIcon />
+                  <ExploreIcon style={{ fontSize: "36px" }} />
                 )}
               </Logo>
 
@@ -160,7 +160,9 @@ const Wrappper = styled.div`
   @media (min-width: 320px) and (max-width:767px){ 
     width: 100%;
     /* background-color:red; */
-  flex-direction:row-reverse;}
+  flex-direction:row-reverse;
+  padding: 0px 0px 0px 20px;
+}
 `;
 const Search = styled.div`
   width: 40%;
@@ -176,7 +178,7 @@ const Search = styled.div`
   border-radius: 3px;
   color: ${({ theme }) => theme.text};
   @media (min-width: 320px) and (max-width:767px){ 
-    width: 70%;
+    width: 60%;
     padding:3px 10px;
 }
 `;
@@ -221,5 +223,7 @@ const Avatar = styled.img`
   border-radius: 50%;
   background-color: #999;
 `;
+
+
 const VideoUpload = styled.div`
 cursor: pointer;`
