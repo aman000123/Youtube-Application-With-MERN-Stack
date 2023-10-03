@@ -80,7 +80,7 @@ const subscribe = async (req, res, next) => {
         //subscrin=ber increment
         //$inc methods
         await User.findByIdAndUpdate(req.params.id, {
-            $inc: { subscriber: 1 }
+            $inc: { subscribers: 1 }
         });
         res.status(200).json("Subscription successfull.")
     }
@@ -107,7 +107,7 @@ const unsubscribe = async (req, res, next) => {
         //subscrin=ber increment
         //$inc methods
         await User.findByIdAndUpdate(req.params.id, {
-            $inc: { subscriber: -1 }
+            $inc: { subscribers: -1 }
         });
         res.status(200).json("Unsubscription successfull.")
     }
