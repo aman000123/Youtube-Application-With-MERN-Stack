@@ -30,6 +30,7 @@ const Menu = ({ darkMode, setDarkMode, isListIconClicked, toggleMenu }) => {
 
     const handleDarkModeClick = () => {
         setDarkMode((prevDarkMode) => !prevDarkMode); // Toggle dark mode
+
     };
 
 
@@ -182,11 +183,6 @@ const Container = styled.div`
     overflow-y: auto; /* Enable vertical scrolling */
     height: calc(100vh - 56px); /* Adjust the height to accommodate the top bar */
 
-    /* background-color: ${({ isListIconClicked }) =>
-        isListIconClicked ? 'transparent' : 'transparent'}; */
-        
-         background-color: ${({ theme }) => theme.bgLighter};
-         color: ${({ theme }) => theme.text};
   
   }
 
@@ -203,9 +199,7 @@ flex: 2;
 
 const Wrappper = styled.div`
     padding:18px 16px;
-    background-color: ${({ theme }) => theme.bgLighter};
-         color: ${({ theme }) => theme.text};
-        
+   
     `;
 
 
