@@ -18,7 +18,7 @@ const Container = styled.div`
 display:flex;
 @media (min-width: 320px) and (max-width:767px){
 
-  background-color: red;
+  
 
 }
 `;
@@ -48,7 +48,7 @@ function App() {
           <Menu darkMode={darkMode} setDarkMode={setDarkMode} />
           {/*main */}
           <Main>
-            <Navbar />
+            <Navbar darkMode={darkMode} setDarkMode={setDarkMode} />
             <Wrappper>
 
 
