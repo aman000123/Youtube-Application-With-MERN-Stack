@@ -73,11 +73,18 @@ const Container = styled.div`
   cursor: pointer;
   display: ${(props) => props.type === "sm" && "flex"};
   gap: 10px;
+  background-color: ${({ theme }) => theme.bgLighter};
+ color: ${({ theme }) => theme.text};
   @media (min-width: 320px) and (max-width:767px){
 flex-direction: column; 
-/* background-color: red; */
 width: 100%;
 margin: auto;
+
+}
+
+@media (min-width: 768px) and (max-width:1024px){
+   width: ${(props) => props.type === "sm" ? "260px" : "260px"};
+  flex-direction: ${(props) => props.type === "sm" ? "column" : ""}; 
 
 }
 `;
