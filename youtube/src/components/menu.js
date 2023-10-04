@@ -22,13 +22,15 @@ import SettingsBrightnessOutlinedIcon from "@mui/icons-material/SettingsBrightne
 import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { useState } from "react";
-
+import Navbar from "./navbar";
 
 
 const Menu = ({ darkMode, setDarkMode, isListIconClicked, toggleMenu }) => {
     const { currentUser } = useSelector(state => state.user)
 
-
+    const handleDarkModeClick = () => {
+        setDarkMode((prevDarkMode) => !prevDarkMode); // Toggle dark mode
+    };
 
 
 
@@ -36,19 +38,19 @@ const Menu = ({ darkMode, setDarkMode, isListIconClicked, toggleMenu }) => {
         // Hide the menu container only on small screens
         if (window.innerWidth <= 767) {
             toggleMenu();
+
         }
     };
 
 
 
-    const handleDarkModeClick = () => {
-        setDarkMode((prevDarkMode) => !prevDarkMode); // Toggle dark mode
-    };
+
 
     return (
         <>
 
             <>
+
 
                 <Container isListIconClicked={isListIconClicked} onClick={handleMenuItemClick}>
                     <Wrappper >
@@ -153,11 +155,6 @@ const Menu = ({ darkMode, setDarkMode, isListIconClicked, toggleMenu }) => {
                             <SettingsBrightnessOutlinedIcon />
                             {darkMode ? "Light" : "Dark"} Mode
                         </Item>
-
-
-
-
-
                     </Wrappper>
                 </Container>
             </>
@@ -166,11 +163,6 @@ const Menu = ({ darkMode, setDarkMode, isListIconClicked, toggleMenu }) => {
     )
 }
 export default Menu
-
-
-
-
-
 
 
 
@@ -189,18 +181,31 @@ const Container = styled.div`
     position: relative; 
     overflow-y: auto; /* Enable vertical scrolling */
     height: calc(100vh - 56px); /* Adjust the height to accommodate the top bar */
-    background-color: ${({ isListIconClicked }) =>
-        isListIconClicked ? 'transparent' : 'transparent'};
+
+    /* background-color: ${({ isListIconClicked }) =>
+        isListIconClicked ? 'transparent' : 'transparent'}; */
+        
+         background-color: ${({ theme }) => theme.bgLighter};
+         color: ${({ theme }) => theme.text};
   
   }
+
+  @media (min-width:760px)and (max-width:1024px){
+
+overflow-y: auto;
+flex: 2;
+
+
+}
   
 `;
 
 
 const Wrappper = styled.div`
     padding:18px 16px;
-    background-color: ${({ isListIconClicked }) =>
-        isListIconClicked ? 'transparent' : 'transparent'};
+    background-color: ${({ theme }) => theme.bgLighter};
+         color: ${({ theme }) => theme.text};
+        
     `;
 
 
