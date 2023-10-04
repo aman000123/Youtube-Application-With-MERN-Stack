@@ -138,7 +138,7 @@ const Video = () => {
     }
 
     catch (err) {
-      console.log("err.response.data== like", err)
+      console.log("err.response.data== subscribed", err)
       toast.error("You are not authenticated for Subscribed")
 
     }
@@ -250,6 +250,13 @@ flex-direction: row;
 
 }
 
+
+  @media (min-width:760px)and (max-width:1024px){
+
+flex-direction: column;
+
+
+}
 
 
 `;
