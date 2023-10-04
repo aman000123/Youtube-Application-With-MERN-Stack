@@ -8,6 +8,17 @@ import styled from "styled-components";
 
 const Container = styled.div`
   flex: 2;
+
+  @media (min-width:760px)and (max-width:1024px){
+
+    flex: 2;
+    display: flex;
+    justify-content: space-between;
+    
+
+
+}
+
 `;
 
 
