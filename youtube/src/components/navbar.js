@@ -7,12 +7,11 @@ import { Link, useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { useState } from "react";
 import Upload from "./Upload";
-import AmanTube from "../img/yt-logo.jpg"
 import Menu from "./menu";
 import CloseIcon from '@mui/icons-material/Close';
 import ExploreIcon from '@mui/icons-material/Explore';
 
-const Navbar = () => {
+const Navbar = ({ setDarkMode, darkMode }) => {
 
   const { currentUser } = useSelector(state => state.user)
   const { currentVideo } = useSelector(state => state.video)
@@ -26,7 +25,7 @@ const Navbar = () => {
 
   const [menuOpen, setMenuOpen] = useState(false);
 
-  const [darkMode, setDarkMode] = useState(false);
+
 
   const navigate = useNavigate()
 
