@@ -102,13 +102,17 @@ width: 200px;
 height: 100%;
 max-height: calc(100vh - 50px); /* Limit the height to the viewport height minus the top bar height */
 background-color: ${({ theme }) => theme.bgLighter};
+         color: ${({ theme }) => theme.text};
 transition: left 0.3s ease-in-out;
 z-index: 11111111;
 @media (min-width: 320px) and (max-width:767px){
 
   overflow-y: auto; /* Add vertical scrolling when content overflows */
+  
 
 }
+
+
 
 `;
 
@@ -124,8 +128,16 @@ width: 40px;
 }
 @media (min-width: 320px) and (max-width:767px){
 
-color: ${({ theme }) => theme.text} 
+  background-color: ${({ theme }) => theme.bgLighter};
+         color: ${({ theme }) => theme.text};
+
 ;
+
+}
+@media (min-width:760px)and (max-width:1024px){
+
+display: none;
+
 
 }
 `;
@@ -146,6 +158,7 @@ const Container = styled.div`
   @media (min-width: 320px) and (max-width:767px){
 display: flex;
 width: 100%;
+background-color: ${({ theme }) => theme.bgLighter};
 
 }
 
@@ -180,6 +193,15 @@ const Search = styled.div`
   @media (min-width: 320px) and (max-width:767px){ 
     width: 60%;
     padding:3px 10px;
+    color: ${({ theme }) => theme.text};
+}
+@media (min-width:760px)and (max-width:1024px){
+
+width: 90%;
+padding: 5px 12px;
+color: ${({ theme }) => theme.text};
+
+
 }
 `;
 
@@ -215,6 +237,13 @@ const User = styled.div`
   gap: 10px;
   font-weight: 500;
   color: ${({ theme }) => theme.text};
+
+  @media (min-width:760px){
+
+gap:12px
+
+
+}
 `;
 
 const Avatar = styled.img`
