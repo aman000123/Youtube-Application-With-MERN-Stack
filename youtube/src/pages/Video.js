@@ -13,7 +13,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useLocation } from "react-router-dom";
 import { useEffect, useState } from "react";
 import axios from "axios";
-import { fetchSuccess, like, dislike } from "../redux/videoSlice";
+import { fetchSuccess, like, dislike, incrementViews } from "../redux/videoSlice";
 
 import { subscription } from "../redux/userSlice"
 import { format } from "timeago.js";
@@ -26,51 +26,57 @@ const Video = () => {
 
   const { currentUser } = useSelector((state) => state.user);
   const { currentVideo } = useSelector((state) => state.video);
-
   const [commentShow, setCommentShow] = useState(false)
 
   const dispatch = useDispatch()
   const path = useLocation().pathname.split("/")[2];
   // console.log(path) fetch video is from path
-  //  console.log("currentVideo", currentVideo, path)
+
 
 
   const [chanel, setChanel] = useState({})
   const [hasViewed, setHasViewed] = useState(false);
-
 
   useEffect(() => {
 
     const fetchData = async () => {
       try {
 
+        const videoRes = await axios.get(`http://localhost:4004/api/videos/find/${path}`)
+        const chanelRes = await axios.get(`http://localhost:4004/api/users/find/${videoRes.data.userId}`);
+        //console.log("videoRes.data.userid", videoRes.data.userId)
 
-        // If the user hasn't viewed the video yet, increase views
-        if (!hasViewed) {
-          await axios.put(`http://localhost:4004/api/videos/view/${currentVideo._id}`);
-          setHasViewed(true);
+        // Check if the video has already been viewed within the current session
+
+        const hasIncrementedViews = localStorage.getItem(`hasIncrementedViews_${videoRes.data._id}`);
+        if (!hasIncrementedViews) {
+
+          await axios.put(`http://localhost:4004/api/videos/view/${videoRes.data._id}`);
+
+          localStorage.setItem(`hasIncrementedViews_${videoRes.data._id}`, "true");
+          dispatch(incrementViews());
         }
 
 
-        const videoRes = await axios.get(`http://localhost:4004/api/videos/find/${path}`)
-        const chanelRes = await axios.get(`http://localhost:4004/api/users/find/${videoRes.data.userId}`);
-        //  console.log("videoRes.data.userid", videoRes.data.userId)
         setChanel(chanelRes.data)
+
         dispatch(fetchSuccess(videoRes.data))
+        setHasViewed(true);
       }
       catch (err) {
         //  toast.error(err.response.data)
-        //console.log("err.response.data==", err.response.data)
+        //        console.log("err.response.data==", err)
 
       }
 
     }
     fetchData()
 
-  }, [path, dispatch, currentUser.subscribedUsers, currentVideo._id, hasViewed])
+  }, [path, dispatch, currentUser.subscribedUsers, currentVideo?._id, hasViewed])
 
 
-  // console.log('currentVideo?.desc,===', currentVideo)
+
+
 
 
   const handleLike = async () => {
@@ -128,27 +134,23 @@ const Video = () => {
 
 
       currentUser.subscribedUsers?.includes(chanel._id)
-
         ? await axiosForSub.put(`http://localhost:4004/api/users/unsub/${chanel._id}`)
-
-
-
         : await axiosForSub.put(`http://localhost:4004/api/users/sub/${chanel._id}`);
       dispatch(subscription(chanel._id))
     }
-
     catch (err) {
       console.log("err.response.data== subscribed", err)
       toast.error("You are not authenticated for Subscribed")
 
     }
   }
-
-
-
   const handleForComment = () => {
     setCommentShow(!commentShow); // Toggle the commentShow state
   }
+
+
+
+
 
 
   return (
